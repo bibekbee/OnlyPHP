@@ -4,25 +4,51 @@
 </head>
 <body>
     <?php
-        $greetings = ['Hello, World','Hello, Planet','Hello, Earth' ,1 ,2];
+        $books = [
+            [
+                "name"=>"Republic",
+                "author"=>"Plato",
+                "Published_date"=>"400BC"
+            ],
+            [
+                "name"=>"The Symposium",
+                "author"=>"Plato",
+                "Published_date"=>"300BC"
+            ],
+            [
+                "name"=>"Letters From a Stoic",
+                 "author"=>"Seneca",
+                 "Published_date"=>"40AD"
+            ],
+            [
+                "name"=>"Bhagavad Gita",
+                 "author"=>"Vyasa",
+                 "Published_date"=>"2500BC"
+            ],
+        ];
 
-        function get($items){
+        function filter($items, $fn){
             $string_greetings = [];
+
             foreach($items as $item){
-            if(is_string($item)){
-                array_push($string_greetings, $item);
+                $string_greetings[] = $fn($item);
             }
-            }
+
             return $string_greetings;
         }
+
+        $getitems = filter($books, function ($x){
+                    if($x['author'] == 'Plato'){
+                        return $x['name'];
+                    }; 
+                    });
 
     ?>
     <div>
         <?php include 'app.php' ?>
-        <?php foreach($greetings as $greeting) : ?>
-            <h1><?php if(is_string($greeting)){
-                echo $greeting;
-            }else{ echo "not a string";}?> </h1>
+        <?php foreach( $getitems as $item) : 
+            ?>
+            <h1><?= $item?> </h1>
         <?php endforeach?>
        
         <h2>Howdy</h2>
