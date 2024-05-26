@@ -39,5 +39,24 @@
                     });
 
     ?>
-    
-<?php require 'views/index.view.php' ?>
+
+<?php
+function dd($value){
+    echo "<pre>";
+    var_dump($value);
+    echo "</pre>";
+}
+?>
+
+
+<?php if($_SERVER['REQUEST_URI'] == '/about'){
+        $page_name = "About";
+        require 'views/about.view.php';
+    }else if($_SERVER['REQUEST_URI'] == '/contacts'){
+        $page_name = "Contacts";
+        require 'views/contacts.view.php';
+    }else{
+        require 'views/index.view.php';
+    }
+?>
+           

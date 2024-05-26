@@ -1,3 +1,3 @@
 <?php
 
-echo "Hi From the App!";
+echo "Hi You are in the Home Page!";
