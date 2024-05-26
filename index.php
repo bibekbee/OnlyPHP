@@ -1,9 +1,4 @@
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-    <?php
+<?php
         $books = [
             [
                 "name"=>"Republic",
@@ -44,14 +39,5 @@
                     });
 
     ?>
-    <div>
-        <?php include 'app.php' ?>
-        <?php foreach( $getitems as $item) : 
-            ?>
-            <h1><?= $item?> </h1>
-        <?php endforeach?>
-       
-        <h2>Howdy</h2>
-    </div>
-</body>
-</html>
+    
+<?php require 'views/index.view.php' ?>
