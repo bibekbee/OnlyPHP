@@ -1,7 +1,7 @@
 <?php require 'views/components/header.php' ?>
-<main class="container mx-auto">
+<main class="container mx-auto my-10">
 <div>
-    <h1>Welcome to the <?= $page_name ?> Page</h1>
+    <h1>Welcome to the Contact Page</h1>
 </div>
 </main>
 </body>
