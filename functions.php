@@ -25,9 +25,11 @@ $getitems = filter($books, function ($x){
 
 function abort($code = 404) {
     http_response_code($code);
-    echo "Sorry not found";
+    if($code == 404){
+    return 'page_404.php';
+    }
+    echo "Sorry Some Error Occurred";
     die();
-    
 }
 
 $routeExists = function ($routes, $uri) {

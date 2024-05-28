@@ -1,6 +1,5 @@
 <?php
        
-
 require 'routes.php';
 
 
