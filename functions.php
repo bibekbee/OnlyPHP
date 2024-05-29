@@ -40,3 +40,13 @@ $routeExists = function ($routes, $uri) {
       }
         return false;
       };
+
+function PrintData($conn){
+  $statement = $conn->prepare('SELECT * FROM onlyPHP');
+  $statement->execute();
+  $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+  echo "<pre>";
+  print_r($result);
+  echo "</pre>";
+}

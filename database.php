@@ -1,17 +1,27 @@
 <?php
 
-$dsn = "mysql:host=localhost;port=3306;dbname=phpsql";
+$dsn = "mysql:host=localhost;dbname=myapp";
 $username = "root";
 
-try {
-    // Create connection
-    $conn = new PDO($dsn, $username);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  
-    echo "Connected to database successfully!";
-  
-    //Your database operations here (prepared statements recommended)
-  
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
+try{
+  $conn = new PDO($dsn, $username);
+  $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+  echo "Connection established successfully!";
+  displayData($conn);
+
+}catch(PDOException $e){
+  echo "Connection failed " . $e->getMessage(); 
+}
+
+function displayData($conn){
+  $statement = $conn->prepare('SELECT * FROM onlyPHP');
+  $statement->execute();
+  $results = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+  echo "<ul>";
+  foreach($results as $result){
+    echo "<li>". $result['title'] . "</li>";
   }
+  echo "</ul>";
+}
