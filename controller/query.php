@@ -1,8 +1,10 @@
 <?php
  require 'Database.php';
  $config = require 'config.php';
- $database = new Database($config);
- $results = $database->query('SELECT * FROM onlyPHP')->fetchAll(PDO::FETCH_ASSOC);
+ $id = $_GET['id'];
+ $database = new Database($config['database']);
+ $query = "SELECT * FROM onlyPHP where id = :id";
+ $results = $database->query($query, [':id' => $id])->fetchAll();
  echo "<ul>";
  foreach($results as $result){
  echo "<li>". $result['title'] ."</li>"; 
