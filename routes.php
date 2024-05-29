@@ -10,7 +10,7 @@ $routes = [
     '/' => 'controller/index.php',
     '/about' => 'controller/about.php',
     '/contacts' => 'controller/contact.php',
-    '/query' => 'controller/query.php'
+    '/notes' => 'controller/query.php'
 ];
 
 require $routeExists($routes, $uri) ? $routeExists($routes, $uri) : abort();
