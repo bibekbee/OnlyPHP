@@ -4,13 +4,13 @@
     <h1>Welcome to the Notes Page</h1>
 </div>
 <div>
-<?php
- echo "<ul>";
- foreach($results as $result){
- echo "<li>". $result['title'] ."</li>"; 
- }
- echo "</ul>";
-?>
+    <ul class="flex flex-col">
+    <?php
+    foreach($results as $result){
+    echo "<a class='text-blue-600 underline' href='note?id={$result['id']}'"."<li>". $result['title'] ."</li>"."</a>"; 
+    }
+    ?>
+    </ul>
 </div>
 </main>
 </body>

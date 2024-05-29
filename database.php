@@ -27,7 +27,8 @@ public function query($query, $prams = []) {
 
 }
 
-
+$config = require 'config.php';
+$database = new Database($config['database']); 
 
 
 
