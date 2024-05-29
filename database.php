@@ -1,42 +1,31 @@
 <?php
 
 class Database {
-private $dsn = "mysql:host=localhost;dbname=myapp";
-private $username = "root";
+public $conn;
 
-private function connect(){
+public function __construct(){
+  $dsn = "mysql:host=localhost;user=root;dbname=myapp";
   try{
-    $conn = new PDO($this->dsn, $this->username);
-    $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-
-    echo "Connection established successfully!";
-    return $conn;
+    $this->conn = new PDO($dsn);
+    $this->conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
   }catch(PDOException $e){
-    echo "Connection failed " . $e->getMessage(); 
-    return null;
+    echo "Connection failed " . $e->getMessage();
   }
 }
 
-public function fetchData() {
-      $conn = $this->connect();
-      if($conn){
-      $statement = $conn->prepare('SELECT * FROM onlyPHP');
+public function query($query) {
+      if($this->conn){
+      $statement = $this->conn->prepare($query);
       $statement->execute();
-      $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-      return $results;
+      return $statement;
       }else{
-        return '';
+        return [];
       }
 }
 
 }
 
 
-$database = new Database();
-$results = $database->fetchData();
 
-echo "<pre>";
-var_dump($results);
-echo "</pre>";
 
 
