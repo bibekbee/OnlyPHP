@@ -12,6 +12,7 @@ $routes = [
     '/about' => 'controller/about.php',
     '/contacts' => 'controller/contact.php',
     '/note' => 'controller/note.php',
+    '/note/create' => 'controller/note-create.php',
     '/notes' => 'controller/query.php'
 ];
 
