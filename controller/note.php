@@ -3,12 +3,8 @@
  $id = $_GET['id'];
  $user_id = 1;
  $query = "SELECT * FROM notes where id = :id";
- $result = $database->query($query, [':id' => $id])->fetch();
+ $result = $database->query($query, [':id' => $id])->findorFail();
 
- if($result == false){
-   abort();
- }else if($result['user_id'] !== $user_id){
-    abort(403);
- }else{
+ authorize($result['user_id'], $user_id);
  require 'views/note.view.php';
- }
+ 

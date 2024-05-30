@@ -34,8 +34,7 @@ function abort($code = 404) {
     }
 
     return require 'views/404.view.php';
-  
-    die();
+
 }
 
 $routeExists = function ($routes, $uri) {
@@ -47,4 +46,9 @@ $routeExists = function ($routes, $uri) {
         return false;
       };
 
-
+function authorize($data, $user_id){
+    if($data !== $user_id){
+        abort(403);
+        die();
+    }
+}

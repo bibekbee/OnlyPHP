@@ -2,7 +2,7 @@
 
 class Database {
 public $conn;
-
+public $statement;
 public function __construct($config, $username = 'root', $password = ''){
   $dsn = 'mysql:' . http_build_query($config, '', ';');
   try{
@@ -17,19 +17,42 @@ public function __construct($config, $username = 'root', $password = ''){
 
 public function query($query, $prams = []) {
       if($this->conn){
-      $statement = $this->conn->prepare($query);
-      $statement->execute($prams);
-      return $statement;
+      $this->statement = $this->conn->prepare($query);
+      $this->statement->execute($prams);
       }else{
-        return [];
+        $this->statement = [];
       }
+      return $this;
+}
+
+public function all(){
+  if($this->statement != []){
+     return $this->statement->fetchAll();
+  }else{
+    return $this->statement;
+  }
+}
+
+public function find(){
+  if($this->statement != []){
+     return $this->statement->fetch();
+  }else{
+    return $this->statement;
+  }
+}
+
+public function findorFail(){
+  $result = $this->find(); 
+  if($result == false){
+    abort();
+    die();
+  }else{
+    return $result;
+  }
 }
 
 }
 
 $config = require 'config.php';
 $database = new Database($config['database']); 
-
-
-
 
