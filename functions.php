@@ -26,9 +26,15 @@ $getitems = filter($books, function ($x){
 function abort($code = 404) {
     http_response_code($code);
     if($code == 404){
-    return 'page_404.php';
+    $err_message = "Page Not Found";
+    }else if($code == 403){
+    $err_message = "Unauthorized";
+    }else{
+    $err_message = "Sorry Some Error Occurred";
     }
-    echo "Sorry Some Error Occurred";
+
+    return require 'views/404.view.php';
+  
     die();
 }
 
@@ -41,12 +47,4 @@ $routeExists = function ($routes, $uri) {
         return false;
       };
 
-function PrintData($conn){
-  $statement = $conn->prepare('SELECT * FROM onlyPHP');
-  $statement->execute();
-  $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  echo "<pre>";
-  print_r($result);
-  echo "</pre>";
-}

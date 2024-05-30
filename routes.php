@@ -15,5 +15,8 @@ $routes = [
     '/notes' => 'controller/query.php'
 ];
 
-require $routeExists($routes, $uri) ? $routeExists($routes, $uri) : abort();
-
+if($routeExists($routes, $uri)){
+    require $routeExists($routes, $uri);
+}else{
+    abort();
+}
