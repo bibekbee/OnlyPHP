@@ -15,9 +15,9 @@
             <nav>
                 <ul class="flex gap-2">
                     <li class="<?= $uri == '/' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="/">Home</a><li>
-                    <li class="<?= $uri == '/about' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="about">About</a><li>
-                    <li class="<?= $uri == '/notes' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="notes">Notes</a><li>
-                    <li class="<?= $uri == '/contacts' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="contacts">Contacts</a><li>
+                    <li class="<?= $uri == '/about' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="/about">About</a><li>
+                    <li class="<?= $uri == '/notes' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="/notes">Notes</a><li>
+                    <li class="<?= $uri == '/contacts' ?  'bg-blue-600' :  '' ?> py-1 px-2 rounded-md"><a href="/contacts">Contacts</a><li>
                 </ul>
             </nav>
         </div>
