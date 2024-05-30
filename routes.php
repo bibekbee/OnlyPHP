@@ -11,9 +11,9 @@ $routes = [
     '/' => 'controller/index.php',
     '/about' => 'controller/about.php',
     '/contacts' => 'controller/contact.php',
-    '/note' => 'controller/note.php',
-    '/note/create' => 'controller/note-create.php',
-    '/notes' => 'controller/query.php'
+    '/note' => 'controller/notes/show.php',
+    '/note/create' => 'controller/notes/create.php',
+    '/notes' => 'controller/notes/index.php'
 ];
 
 if($routeExists($routes, $uri)){

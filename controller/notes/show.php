@@ -6,5 +6,5 @@
  $result = $database->query($query, [':id' => $id])->findorFail();
 
  authorize($result['user_id'], $user_id);
- require 'views/note.view.php';
+ require 'views/notes/show.view.php';
  
