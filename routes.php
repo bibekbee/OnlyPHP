@@ -3,7 +3,6 @@
 require BASE_PATH . 'data.php';
 require BASE_PATH . 'functions.php';
 
-
 require base_path('Database.php');
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
@@ -20,6 +19,7 @@ $routes = [
 
 if($routeExists($routes, $uri)){
     require base_path($routeExists($routes, $uri));
+    
 }else{
     abort();
 }

@@ -1,4 +1,4 @@
-<?php require base_path('views/components/header.php') ?>
+<?php view('components/header.php') ?>
 <main class="container mx-auto my-10">
 <div class="mb-5 flex justify-between">
     <p>Create a new note</p>
