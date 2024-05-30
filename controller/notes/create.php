@@ -1,5 +1,5 @@
 <?php
-require 'Validator.php';
+require base_path('Validator.php');
 $user_id = 1;
 $errors = [];
 $message = '';
@@ -21,4 +21,4 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
  
 }
 
-require 'views/notes/create.view.php';
+require base_path('views/notes/create.view.php');

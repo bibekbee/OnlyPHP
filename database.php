@@ -53,6 +53,6 @@ public function findorFail(){
 
 }
 
-$config = require 'config.php';
+$config = require base_path('config.php');
 $database = new Database($config['database']); 
 

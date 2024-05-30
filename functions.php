@@ -34,7 +34,7 @@ function abort($code = 404) {
     $err_message = "Sorry Some Error Occurred";
     }
 
-    return require 'views/404.view.php';
+    return require base_path('views/404.view.php');
 
 }
 
@@ -52,4 +52,8 @@ function authorize($data, $user_id){
         abort(403);
         die();
     }
+}
+
+function base_path($path){
+    return BASE_PATH . $path;
 }

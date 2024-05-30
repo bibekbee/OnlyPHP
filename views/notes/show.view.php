@@ -1,4 +1,4 @@
-<?php require 'views/components/header.php' ?>
+<?php require base_path('views/components/header.php') ?>
 <main class="container mx-auto my-10">
 <div class="mb-5">
     <a class="text-blue-600 underline" href="/notes">Back</a>

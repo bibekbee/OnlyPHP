@@ -1,2 +1,2 @@
 <?php
-require 'views/contacts.view.php';
+require base_path('views/contacts.view.php');
