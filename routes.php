@@ -13,8 +13,10 @@ $route->get('/note', 'controller/notes/show.php');
 $route->delete('/note', 'controller/notes/destroy.php');
 
 $route->get('/note/create', 'controller/notes/create.php');
-$route->post('/note/create', 'controller/notes/create.php');
+$route->post('/note/store', 'controller/notes/store.php');
 
+$route->get('/note/edit', 'controller/notes/edit.php');
+$route->patch('/note/update', 'controller/notes/update.php');
 
 $route->get('/notes', 'controller/notes/index.php');
 
