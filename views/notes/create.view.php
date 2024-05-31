@@ -5,7 +5,7 @@
     <p><?=$message?></p>
 </div>
 <div>
-    <form class="flex flex-col w-1/4" action="" method="POST">
+    <form class="flex flex-col w-1/4" action="<?= $_SERVER['REQUEST_URI']?>" method="POST">
         <label for="note"><b>New Note:</b></label>
         <div>
         <textarea id="note" class="border-2 rounded-md border-gray-200 mt-2" name="note" rows="4" cols="50" placeholder="Enter your message here...">
