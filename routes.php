@@ -1,30 +1,24 @@
 <?php
 
-require BASE_PATH . 'Core/data.php';
-require BASE_PATH . 'Core/functions.php';
-
-spl_autoload_register(function($class){
-    $class = str_replace('\\', '/', $class);
-    require base_path($class . ".php");
-});
-
-//require base_path('Database.php');
-
+use Core\Router;
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
-//$uri = $_SERVER['REQUEST_URI'];
+$method = $_POST['__method'] ?? $_SERVER['REQUEST_METHOD'];
 
-$routes = [
-    '/' => 'controller/index.php',
-    '/about' => 'controller/about.php',
-    '/contacts' => 'controller/contact.php',
-    '/note' => 'controller/notes/show.php',
-    '/note/create' => 'controller/notes/create.php',
-    '/notes' => 'controller/notes/index.php'
-];
+$route = new Router;
+$route->get('/','controller/index.php');
+$route->get('/about', 'controller/about.php');
+$route->get('/contacts', 'controller/contact.php');
 
-if($routeExists($routes, $uri)){
-    require base_path($routeExists($routes, $uri));
-    
-}else{
-    abort();
-}
+$route->get('/note', 'controller/notes/show.php');
+$route->delete('/note', 'controller/notes/destroy.php');
+
+$route->get('/note/create', 'controller/notes/create.php');
+$route->post('/note/create', 'controller/notes/create.php');
+
+
+$route->get('/notes', 'controller/notes/index.php');
+
+$route->route($uri, $method);
+
+
+
