@@ -1,8 +1,8 @@
 <?php
-use Core\Database;
+use Core\App;
 
-$config = require base_path('config.php');
-$database = new Database($config['database']); 
+$database = App::container()->resolve('Core\Database');
+
 $id = $_POST['id'];
 
 $database->query("DELETE FROM notes WHERE id = :id", [':id' => $id]);

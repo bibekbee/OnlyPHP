@@ -1,10 +1,9 @@
 <?php
 
-use Core\Database;
 use Core\Validator;
+use Core\App;
 
-$config = require base_path('config.php');
-$database = new Database($config['database']); 
+$database = App::container()->resolve('Core\Database');
 
 $user_id = 1;
 $errors = [];
