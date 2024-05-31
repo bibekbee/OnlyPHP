@@ -1,5 +1,8 @@
 <?php
 
+namespace Core;
+use PDO;
+
 class Database {
 public $conn;
 public $statement;
@@ -52,7 +55,4 @@ public function findorFail(){
 }
 
 }
-
-$config = require base_path('config.php');
-$database = new Database($config['database']); 
 

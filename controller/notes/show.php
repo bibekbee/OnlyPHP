@@ -1,5 +1,10 @@
 <?php
 
+ use Core\Database;
+
+ $config = require base_path('Core/config.php');
+ $database = new Database($config['database']); 
+
  $id = $_GET['id'];
  $user_id = 1;
  $query = "SELECT * FROM notes where id = :id";
