@@ -48,10 +48,5 @@ function view($path, $attributes = []){
     require base_path('views/' . $path);
 }
 
-$config = require base_path('config.php');
-$getitems = filter($config['books'], function ($x){
-    if($x['author'] == 'Plato'){
-        return $x['name'];
-    }; 
-});
+
 

@@ -1,7 +1,7 @@
 <?php
 
  use Core\App;
-
+ $_SESSION['name'] = 'UserName';
  $database = App::container()->resolve('Core\Database');
 
  $id = $_GET['id'];
