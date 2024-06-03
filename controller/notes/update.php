@@ -11,7 +11,7 @@ $input_length = strlen($input);
 
 $validator = new Validator($input, 3, 1000);
 if($validator->validate($input_length)){ 
-    $database->query("UPDATE notes SET title= :title WHERE id= :id", 
+    $database->query("UPDATE notes SET title = :title WHERE id = :id", 
     [':title' => htmlspecialchars($input), ':id' => $_POST['id']]);
     header('location: /notes');
  }

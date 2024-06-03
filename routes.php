@@ -20,6 +20,9 @@ $route->patch('/note/update', 'controller/notes/update.php');
 
 $route->get('/notes', 'controller/notes/index.php');
 
+$route->get('/register', 'controller/registration/create.php');
+$route->post('/register', 'controller/registration/register.php');
+
 $route->route($uri, $method);
 
 

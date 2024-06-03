@@ -23,11 +23,11 @@ class Validator{
 
     function error($length){
           if($this->input == ''){
-           return 'Empty note cannot be submitted';
+           return 'Input is required';
           }else if($length < $this->min){
-           return 'Note too small need to be atleast 3 char';
+           return "Input too small need to be atleast $this->min char";
           }else if($length > $this->max){
-           return 'Note too big need to be less than 1000 char';
+           return "Input too big need to be less than $this->max char";
           }else{
             return '';
           }
