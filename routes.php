@@ -18,7 +18,7 @@ $route->post('/note/store', 'controller/notes/store.php');
 $route->get('/note/edit', 'controller/notes/edit.php');
 $route->patch('/note/update', 'controller/notes/update.php');
 
-$route->get('/notes', 'controller/notes/index.php')->only('guest');
+$route->get('/notes', 'controller/notes/index.php')->only('auth');
 
 $route->get('/register', 'controller/registration/create.php')->only('guest');
 $route->post('/register', 'controller/registration/register.php');

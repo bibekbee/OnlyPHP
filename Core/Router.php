@@ -42,6 +42,11 @@ class Router{
                         header('location: /');
                     }
                 }
+                if($route['middleware'] == 'auth'){
+                    if(!$_SESSION['user'] ?? false) {
+                        header('location: /');
+                    }
+                }
 
                 return require base_path($route['controller']);
             }
