@@ -42,8 +42,9 @@ class Router{
                 //apply middleware
                 
                 if($route['middleware'] ?? false){
-                $middleware = Map::filter[$route['middleware']];
-                (new $middleware)->handle();
+                    Map::resolve($route['middleware']);
+                // $middleware = Map::filter[$route['middleware']];
+                // (new $middleware)->handle();
                 }
 
                 return require base_path($route['controller']);
