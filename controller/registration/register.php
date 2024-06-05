@@ -14,11 +14,11 @@ $passlen = strlen($password);
 $validate_userName = new Validator($email,1,255);
 $validate_Pass = new Validator($password,1,255);
 
-if(!$validate_userName->validate($userlen) || !$validate_Pass->validate($passlen)){
-    if(!$validate_userName->validate($userlen) && !$validate_Pass->validate($passlen)){
+if($validate_userName->validate($userlen) != true || $validate_Pass->validate($passlen) != true){
+    if($validate_userName->validate($userlen) != true && $validate_Pass->validate($passlen) != true){
         $errors['email'] = $validate_userName->error($userlen);
         $errors['pass'] = $validate_userName->error($passlen);
-    }else if(!$validate_userName->validate($userlen)){
+    }else if($validate_userName->validate($userlen) != true){
         $errors['email'] = $validate_userName->error($userlen);
         $errors['pass'] = '';
     }else{

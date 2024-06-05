@@ -23,6 +23,9 @@ $route->get('/notes', 'controller/notes/index.php')->only('auth');
 $route->get('/register', 'controller/registration/create.php')->only('guest');
 $route->post('/register', 'controller/registration/register.php');
 
+$route->get('/login', 'controller/session/create.php');
+$route->post('/login', 'controller/session/store.php');
+
 $route->route($uri, $method);
 
 
