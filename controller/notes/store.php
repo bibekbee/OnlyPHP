@@ -11,15 +11,15 @@ $message = '';
    $input = trim($_POST['note']);
    $input_length = strlen($input);
 
-   $validator = new Validator($input, 3, 1000);
-
-   if($validator->validate($input_length)){ 
+   $validator = new Validator(3, 1000);
+ 
+   if($validator->validate($input_length) == 'true'){ 
       $database->query("INSERT INTO notes(title, user_id) VALUES(:title, :user_id)", 
       [':title' => htmlspecialchars($input), ':user_id' => $user_id]);
       $message =  "done";
    }
 
-   $errors['name'] = $validator->error($input_length);
+   $errors['name'] = $validator->validate($input_length);
 
 
 view('notes/create.view.php', ['errors' => $errors, 'input' => $input, 'message' => $message]);

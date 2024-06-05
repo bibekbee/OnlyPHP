@@ -11,19 +11,18 @@ $password = trim($_POST['password']);
 $userlen = strlen($email);
 $passlen = strlen($password);
 
-$validate_userName = new Validator($email,1,255);
-$validate_Pass = new Validator($password,1,255);
+$validate = new Validator(6,255);
 
-if($validate_userName->validate($userlen) != true || $validate_Pass->validate($passlen) != true){
-    if($validate_userName->validate($userlen) != true && $validate_Pass->validate($passlen) != true){
-        $errors['email'] = $validate_userName->error($userlen);
-        $errors['pass'] = $validate_userName->error($passlen);
-    }else if($validate_userName->validate($userlen) != true){
-        $errors['email'] = $validate_userName->error($userlen);
+if($validate->validate($email, 'email') != 'true' || $validate->validate($passlen) != 'true'){
+    if($validate->validate($email, 'email') != 'true' && $validate->validate($passlen) != 'true'){
+        $errors['email'] = $validate->validate($email, 'email');
+        $errors['pass'] = $validate->validate($passlen);
+    }else if($validate->validate($email, 'email') != 'true'){
+        $errors['email'] = $validate->validate($email, 'email');
         $errors['pass'] = '';
     }else{
         $errors['email'] = '';
-        $errors['pass'] = $validate_userName->error($passlen);
+        $errors['pass'] = $validate->validate($passlen);
     }
 
     view('registration/create.view.php', ['errors' => $errors]);
