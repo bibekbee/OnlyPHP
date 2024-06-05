@@ -11,6 +11,8 @@ $result = $db->query('SELECT * FROM user WHERE email = :email', [':email' => $em
 
 if($result && $result['pass'] == $pass){
     $_SESSION['user'] = $result['email'];
+    header('location: /');
+    exit();
 }else{
     dd("no such user");
 }

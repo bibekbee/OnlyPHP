@@ -25,6 +25,7 @@ $route->post('/register', 'controller/registration/register.php');
 
 $route->get('/login', 'controller/session/create.php');
 $route->post('/login', 'controller/session/store.php');
+$route->delete('/logout', 'controller/session/destroy.php');
 
 $route->route($uri, $method);
 
