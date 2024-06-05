@@ -32,6 +32,7 @@ $result = $db->query('SELECT * FROM user WHERE email = :email', [':email' => $em
 
 if($result && password_verify($pass, $result['pass'])){
     $_SESSION['user'] = $result['email'];
+    $_SESSION['id'] = $result['id'];
     header('location: /');
     exit();
 }else{

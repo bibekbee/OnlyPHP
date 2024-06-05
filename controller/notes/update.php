@@ -3,7 +3,7 @@
 use Core\Validator;
 use Core\App;
 $database = App::container()->resolve('Core\Database');
-$user_id = 1;
+$user_id = $_SESSION['id'];
 $message = '';
 
 $input = trim($_POST['note']);
@@ -14,6 +14,7 @@ if($validator->validate($input_length) == 'true'){
     $database->query("UPDATE notes SET title = :title WHERE id = :id", 
     [':title' => htmlspecialchars($input), ':id' => $_POST['id']]);
     header('location: /notes');
+    exit();
 }
 
 $errors['name'] = $validator->validate($input_length);

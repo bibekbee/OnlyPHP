@@ -37,7 +37,7 @@ if($user_exist){
     exit();
 }else{
     $db->query("INSERT INTO user(email,pass) VALUES(:email, :pass)", [':email' => $email, ':pass' => password_hash($password,PASSWORD_DEFAULT)]);
-    $_SESSION['user'] = $email;
+
     header('location: /');
     exit();
 }

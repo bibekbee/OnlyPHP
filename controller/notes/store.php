@@ -5,7 +5,7 @@ use Core\App;
 
 $database = App::container()->resolve('Core\Database');
 
-$user_id = 1;
+$user_id = $_SESSION['id'];
 $message = '';
 
    $input = trim($_POST['note']);
@@ -16,10 +16,11 @@ $message = '';
    if($validator->validate($input_length) == 'true'){ 
       $database->query("INSERT INTO notes(title, user_id) VALUES(:title, :user_id)", 
       [':title' => htmlspecialchars($input), ':user_id' => $user_id]);
-      $message =  "done";
+      header('location: /notes');
+      exit();
+   }else{
+      $errors['name'] = $validator->validate($input_length);
    }
-
-   $errors['name'] = $validator->validate($input_length);
 
 
 view('notes/create.view.php', ['errors' => $errors, 'input' => $input, 'message' => $message]);
