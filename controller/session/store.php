@@ -31,8 +31,7 @@ if($validate->validate($email, 'email') != 'true' || $validate->validate($passle
 $result = $db->query('SELECT * FROM user WHERE email = :email', [':email' => $email])->find();
 
 if($result && password_verify($pass, $result['pass'])){
-    $_SESSION['user'] = $result['email'];
-    $_SESSION['id'] = $result['id'];
+    login($result);
     header('location: /');
     exit();
 }else{
