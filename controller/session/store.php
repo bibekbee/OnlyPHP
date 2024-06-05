@@ -6,31 +6,19 @@ $db = App::container()->resolve('Core\Database');
 
 $errors = [];
 $email = trim($_POST['email']);
-$pass = trim($_POST['password']);
-$userlen = strlen($email);
-$passlen = strlen($pass);
+$password = trim($_POST['password']);
 
 $validate = new Validator(6,255);
 
-if($validate->validate($email, 'email') != 'true' || $validate->validate($passlen) != 'true'){
-    if($validate->validate($email, 'email') != 'true' && $validate->validate($passlen) != 'true'){
-        $errors['email'] = $validate->validate($email, 'email');
-        $errors['pass'] = $validate->validate($passlen);
-    }else if($validate->validate($email, 'email') != 'true'){
-        $errors['email'] = $validate->validate($email, 'email');
-        $errors['pass'] = '';
-    }else{
-        $errors['email'] = '';
-        $errors['pass'] = $validate->validate($passlen);
-    }
-
+if($validate->check($email, $password)){
+    $result = $db->query('SELECT * FROM user WHERE email = :email', [':email' => $email])->find();
+}else{
+    $errors = $validate->fail($email, $password);
     view('session/create.view.php', ['errors' => $errors]);
     exit();
 }
 
-$result = $db->query('SELECT * FROM user WHERE email = :email', [':email' => $email])->find();
-
-if($result && password_verify($pass, $result['pass'])){
+if($result && password_verify($password, $result['pass'])){
     login($result);
     header('location: /');
     exit();

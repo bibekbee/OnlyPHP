@@ -11,23 +11,46 @@ class Validator{
         $this->max = $max;
     }
 
-    function validate($input, $type = 'text'){
-        if($type == 'text'){
+    function validate($input){
             if($input != 0 && $input > $this->min && $input < $this->max){
-                return 'true';
+                return true;
             }else{
-                return $this->errorText($input);
+                return false;
             }
-        }else if($type == 'email'){
-            if(filter_var($input, FILTER_VALIDATE_EMAIL)){
-                return 'true';
-            }else{
-                return 'please enter a valid email';
-            }
-        }
     }
 
-    function errorText($length){
+    function validLength($length){
+       return ($length > $this->min && $length < $this->max);
+    }
+
+    function check($email, $password){
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $validpass = $this->validLength(strlen($password));
+            if($validpass){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    function fail($email, $password){
+            $invalidemail = filter_var($email, FILTER_VALIDATE_EMAIL);
+            $invalidpass = $this->validLength(strlen($password));
+
+            if(!$invalidemail && !$invalidpass){
+                return ['email' => "Enter a valid email",
+                        'pass' => "Password should be at least $this->min char long"];
+            }else if(!$invalidemail){
+                return ['email' => "Enter a valid email",
+                        'pass' => ''];
+            }else{
+                return ['email' => '',
+                        'pass' => "Password should be at least $this->min char long"];
+            }
+    }
+
+    function error($length){
           if($length == 0){
            return 'Input is required';
           }else if($length < $this->min){

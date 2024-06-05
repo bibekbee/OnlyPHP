@@ -54,7 +54,7 @@ function login($result){
         'id' => $result['id']
     ];
 
-    session_regenerate_id();
+    session_regenerate_id(true);
 }
 
 function logout(){
