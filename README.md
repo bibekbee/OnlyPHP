@@ -1,2 +1,3 @@
 # OnlyPHP
-just some PHP logics
+OnlyPHP is a small PHP framework
+
