@@ -11,16 +11,16 @@ class Validator{
         $this->max = $max;
     }
 
+    function validLength($length){
+        return ($length > $this->min && $length < $this->max);
+    }
+
     function validate($input){
-            if($input != 0 && $input > $this->min && $input < $this->max){
+            if($this->validLength($input)){
                 return true;
             }else{
                 return false;
             }
-    }
-
-    function validLength($length){
-       return ($length > $this->min && $length < $this->max);
     }
 
     function check($email, $password){

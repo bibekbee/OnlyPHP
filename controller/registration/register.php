@@ -13,23 +13,22 @@ $validate = new Validator(6,255);
 
 if($validate->check($email, $password)){
     $user_exist = $db->query("SELECT * from user WHERE email = :email", [':email' => $email])->find();
+    //Check if user already exists
+    if($user_exist){
+        redirect('/');
+    }
 }else{
     $errors = $validate->fail($email, $password);
     view('registration/create.view.php', ['errors' => $errors]);
     exit();
 }
 
-if($user_exist){
-    //Check if user already exists
-    header('location: /');
-    exit();
-}else{
-    $db->query("INSERT INTO user(email,pass) VALUES(:email, :pass)", 
-    [
-        ':email' => $email,
-        ':pass' => password_hash($password,PASSWORD_DEFAULT)
-    ]);
 
-    header('location: /');
-    exit();
-}
+ $db->query("INSERT INTO user(email,pass) VALUES(:email, :pass)", 
+ [
+    ':email' => $email,
+    ':pass' => password_hash($password,PASSWORD_DEFAULT)
+ ]);
+
+ redirect('/');
+
