@@ -2,6 +2,7 @@
 
 use Core\Validator;
 use Core\App;
+use Core\Session;
 $database = App::container()->resolve('Core\Database');
 $user_id = $_SESSION['id'];
 $message = '';
@@ -18,5 +19,6 @@ if($validator->validate($input_length)){
 }
 
 $errors['name'] = $validator->error($input_length);
-
-view('notes/update.view.php', ['errors' => $errors, 'input' => $input, 'message' => '', 'id' => $_POST['id']]);
+Session::flash('errors', $errors);
+$id = $_POST['id'];
+redirect("/note/edit?id=$id");

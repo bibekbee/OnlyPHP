@@ -2,7 +2,7 @@
 
 use Core\App;
 use Core\Validator;
-
+use Core\Session;
 $db = App::container()->resolve('Core\Database');
 
 $errors = [];
@@ -19,8 +19,8 @@ if($validate->check($email, $password)){
     }
 }else{
     $errors = $validate->fail($email, $password);
-    view('registration/create.view.php', ['errors' => $errors]);
-    exit();
+    Session::flash('errors', $errors);  
+    redirect('/register');
 }
 
 

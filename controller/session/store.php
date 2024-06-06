@@ -2,6 +2,8 @@
 
 use Core\App;
 use Core\Validator;
+use Core\Authenticator;
+use Core\Session;
 $db = App::container()->resolve('Core\Database');
 
 $errors = [];
@@ -11,22 +13,25 @@ $password = trim($_POST['password']);
 $validate = new Validator(6,255);
 
 if($validate->check($email, $password)){
-    $result = $db->query('SELECT * FROM user WHERE email = :email', [':email' => $email])->find();
-    //chceking for the password match
-    if($result && password_verify($password, $result['pass'])){
+    $auth = new Authenticator;
+    $result = $auth->attempt($email, $password, $db);
+    if($result){
         login($result);
         redirect('/');
     }
 }else{
     $errors = $validate->fail($email, $password);
-    view('session/create.view.php', ['errors' => $errors]);
-    exit();
+    Session::flash('errors', $errors);
+    redirect('/login');
 }
 
     //If password was incorrect
-    $errors['email'] = '';
-    $errors['pass'] = 'User not found try again!';
-    view('session/create.view.php', ['errors' => $errors]);
-    exit();
+    $errors = [
+        'email' => '',
+        'pass' => 'User not found try again!'
+    ];
+
+    Session::flash('errors', $errors);  
+    redirect('/login');
 
 

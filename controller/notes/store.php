@@ -2,7 +2,7 @@
 
 use Core\Validator;
 use Core\App;
-
+use Core\Session;
 $database = App::container()->resolve('Core\Database');
 
 $user_id = $_SESSION['id'];
@@ -16,11 +16,9 @@ $message = '';
    if($validator->validate($input_length)){ 
       $database->query("INSERT INTO notes(title, user_id) VALUES(:title, :user_id)", 
       [':title' => htmlspecialchars($input), ':user_id' => $user_id]);
-      header('location: /notes');
-      exit();
-   }else{
-      $errors['name'] = $validator->error($input_length);
+      redirect('/notes');
    }
-
-
-view('notes/create.view.php', ['errors' => $errors, 'input' => $input, 'message' => $message]);
+      
+$errors['name'] = $validator->error($input_length);
+Session::flash('errors', $errors);
+redirect('/note/create');

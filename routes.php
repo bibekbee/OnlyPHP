@@ -1,6 +1,8 @@
 <?php
 
 use Core\Router;
+use Core\Session;
+
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['__method'] ?? $_SERVER['REQUEST_METHOD'];
 
@@ -28,6 +30,8 @@ $route->post('/login', 'controller/session/store.php');
 $route->delete('/logout', 'controller/session/destroy.php');
 
 $route->route($uri, $method);
+
+Session::clearFlash();
 
 
 
