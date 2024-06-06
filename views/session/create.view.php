@@ -6,7 +6,7 @@
 <div>
     <form class="flex flex-col w-1/4" action="" method="POST">
         <label for="user"><b>Email:</b></label>
-        <input class="border-2 border-gray-500" type="email" name="email" id="user"/>
+        <input class="border-2 border-gray-500" type="email" name="email" value="<?=old('email')?>" id="user"/>
         <p class="mt-1 text-sm text-red-600">
             <?php echo empty($errors) ? '' : $errors['email']; ?>
         </p>

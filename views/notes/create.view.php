@@ -9,7 +9,7 @@
         <label for="note"><b>New Note:</b></label>
         <div>
         <textarea id="note" class="border-2 rounded-md border-gray-200 mt-2" name="note" rows="4" cols="50" placeholder="Enter your message here...">
-        <?= $input != '' ? $input : '' ?>
+        <?= old('note') ?>
         </textarea>
         <p class="mt-1 text-sm text-red-600">
             <?php echo empty($errors) ? '' : $errors['name']; ?>

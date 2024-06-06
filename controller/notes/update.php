@@ -20,5 +20,6 @@ if($validator->validate($input_length)){
 
 $errors['name'] = $validator->error($input_length);
 Session::flash('errors', $errors);
+Session::flash('note', $input);
 $id = $_POST['id'];
 redirect("/note/edit?id=$id");

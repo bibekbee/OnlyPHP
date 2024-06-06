@@ -1,6 +1,7 @@
 <?php
 use Core\App;
 use Core\Session;
+
 $errors = Session::getFlash('errors');
 $db = App::container()->resolve('Core\Database');
 

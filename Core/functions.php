@@ -69,3 +69,12 @@ function redirect($route){
     header("location: $route");
     exit();
 }
+
+function old($key){
+   $result = Core\Session::getflash($key);
+   if($result == []){
+    return '';
+   }
+
+   return $result;
+}

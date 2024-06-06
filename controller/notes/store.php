@@ -21,4 +21,5 @@ $message = '';
       
 $errors['name'] = $validator->error($input_length);
 Session::flash('errors', $errors);
+Session::flash('note', $input);
 redirect('/note/create');

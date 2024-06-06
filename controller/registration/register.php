@@ -19,7 +19,8 @@ if($validate->check($email, $password)){
     }
 }else{
     $errors = $validate->fail($email, $password);
-    Session::flash('errors', $errors);  
+    Session::flash('errors', $errors); 
+    Session::flash('email', $email); 
     redirect('/register');
 }
 
